@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+<video id="vid" width="400" height="400" autoplay muted>
+  <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+<div id="my-player" style="width: 400px; height: 400px;float: right;"></div>
+<script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8.10.0/bitmovinplayer.js"></script>
+<script>
+    // document.getElementById('vid').play();
+    const config = {
+  key: '3fc557df-0355-48b3-80a6-b78a6bebd99a',
+  playback: {
+    autoplay: true,
+    muted: true
+  },
+};
+
+var container = document.getElementById('my-player');
+var player = new bitmovin.player.Player(container, config);
+var source = {
+    dash: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd',
+    hls: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
+    progressive:
+        'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4',
+    poster: 'https://bitmovin-a.akamaihd.net/content/MI201109210084_1/poster.jpg'
+};
+
+player.load(source).then(() => {
+  player.play();
+});
+</script>
+</body> 
+</html>
